@@ -2,7 +2,7 @@
 
 Color Apple-style emojis for editable After Effects text.
 
-**[Download AE Emoji 4.4.4 for macOS](https://github.com/alprntrz/ae-emoji/releases/latest)**
+**[Download AE Emoji 4.4.5 for macOS](https://github.com/alprntrz/ae-emoji/releases/latest)**
 
 AE Emoji converts pasted emojis and typed commands into separate PNG layers. Your text stays editable, and each emoji follows its place in the text.
 
@@ -11,7 +11,7 @@ AE Emoji converts pasted emojis and typed commands into separate PNG layers. You
 - Convert pasted Unicode emojis into color emoji layers.
 - Type `/s :1`, `/s :smile`, or `/smoji :smile` directly in an AE text layer.
 - Place multiple emojis at the beginning, middle, or end of a sentence.
-- Use multiline text and TikTokText Boxed Text.
+- Use emojis in multiline text.
 - Replace an emoji without rebuilding the text layer.
 - Browse the gallery, Favorites, and Recent; create personal names and numbers.
 - Adjust emoji size and vertical offset with reusable appearance presets.
@@ -24,11 +24,11 @@ AE Emoji converts pasted emojis and typed commands into separate PNG layers. You
 - After Effects 2025 or later, on a macOS version supported by that release.
 - The built-in Apple Color Emoji font.
 
-Windows is not supported. TikTokText is optional and must be installed separately. Python, Xcode, Homebrew, and Node.js are not needed to use the extension.
+Windows is not supported. Python, Xcode, Homebrew, and Node.js are not needed to use the extension.
 
 ## Install
 
-1. Download **AE-Emoji-4.4.4-Mac.zip** from [Releases](https://github.com/alprntrz/ae-emoji/releases/latest).
+1. Download **AE-Emoji-4.4.5-Mac.zip** from [Releases](https://github.com/alprntrz/ae-emoji/releases/latest).
 2. Save your work and completely quit After Effects.
 3. Extract the ZIP. Keep all files in its `AE-Emoji` folder together.
 4. Double-click **Install.command**. An existing AE Emoji installation is backed up first.

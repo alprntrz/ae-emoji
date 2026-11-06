@@ -29,7 +29,7 @@ _sevemoji_install() {
     print -u2 'Installation failed. The previous installation was restored.'
     return 1
   fi
-  print 'AE Emoji 4.4.4 installed successfully.'
+  print 'AE Emoji 4.4.5 installed successfully.'
   print 'Open After Effects > Window > Extensions > AE Emoji.'
   print 'In AE Settings > Scripting & Expressions, enable:'
   print '  Allow Scripts to Write Files and Access Network'

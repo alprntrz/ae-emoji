@@ -1,11 +1,11 @@
-AE EMOJI 4.4.4
+AE EMOJI 4.4.5
 Color emojis for editable After Effects text
 
 WHAT IT DOES
 AE Emoji adds full-color Apple-style emojis to After Effects while keeping your
 text editable. Each emoji has its own layer and follows its position in the text.
 It converts pasted emojis, numbered codes and names, and supports multi-line
-text and TikTokText Boxed Text. The panel includes an illustrated emoji library,
+and multiline text. The panel includes an illustrated emoji library,
 favorites, recent choices, personal codes and saved appearance presets.
 The interface and help are in English. No keyboard shortcut is installed.
 
@@ -16,7 +16,6 @@ REQUIREMENTS
 - Permission for After Effects scripts to write files (see step 4 below).
 This is a macOS package; it does not run on Windows.
 Python, Xcode, Homebrew and separate emoji fonts are not required.
-TikTokText is optional and is not included.
 
 INSTALL
 1. Save your work and completely quit After Effects.
@@ -93,11 +92,11 @@ code. Clear Number to remove its numeric code. New code clears the form;
 Remove deletes the entry. Each number must be unique. Built-in names and
 numbers 1–60 stay reserved. Changes affect future commands, not emojis already
 placed in a project. Personal codes work in the panel, native text layers
-and TikTokText. Settings persist locally across restarts.
+and native text layers. Settings persist locally across restarts.
 
-ALIGNMENT UPDATE IN 4.4.4
+ALIGNMENT UPDATE IN 4.4.5
 Restores the native glyph size and baseline used before 4.4. Measurements use
-the surrounding text font, including wrapped text and TikTokText boxes. Existing emoji layers
+the surrounding text font, including wrapped text. Existing emoji layers
 are corrected when auto-conversion checks them. Use Repair project to update
 the whole project, then save. Your manual emoji size and offset stay intact.
 
@@ -111,13 +110,7 @@ Settings > Emoji appearance controls emoji size and vertical position.
 - Apply to selected: apply values to selected emojis, or every emoji attached
   to selected text layers. This action can be undone in AE.
 Standard, Compact and Raised are included. Replacing an existing emoji retains
-its size, offset and cuts. Larger emojis can extend beyond a TikTokText box.
-
-TIKTOKTEXT BOXED TEXT
-Paste text with emojis or AE Emoji codes into TikTokText, then create Boxed Text.
-AE Emoji converts its completed, unselected text layer while preserving its
-box and body text formatting. For later direct text edits, finish with
-Command+Enter and V. TikTokText must be installed separately to create its boxes.
+its size, offset and cuts. Larger emojis can extend beyond a text box.
 
 TRIM, SPLIT AND MOVE
 Select the text and its visible emoji layers together when trimming, moving
@@ -142,7 +135,7 @@ Adobe/CEP/extensions/co.sevenapps.paste. Local settings and update backups live
 under Library/Application Support/Sevemoji. These paths are resolved on the
 receiving computer; they are not tied to the original development computer.
 
-AUTOMATIC CONVERSION IN 4.4.4
+AUTOMATIC CONVERSION IN 4.4.5
 The panel now shows why conversion is waiting: script file access, an unsaved
 project, the Type tool, a stopped watcher or a conversion error. A lightweight
 health check restarts a lost watcher while the panel is open. Restart auto-convert
