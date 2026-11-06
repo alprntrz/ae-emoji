@@ -4,8 +4,8 @@ Color emojis for editable After Effects text
 WHAT IT DOES
 AE Emoji adds full-color Apple-style emojis to After Effects while keeping your
 text editable. Each emoji has its own layer and follows its position in the text.
-It converts pasted emojis, numbered codes and names, and supports multi-line
-and multiline text. The panel includes an illustrated emoji library,
+It converts pasted emojis, numbered codes and names, and supports multiline
+text. The panel includes an illustrated emoji library,
 favorites, recent choices, personal codes and saved appearance presets.
 The interface and help are in English. No keyboard shortcut is installed.
 
@@ -91,8 +91,7 @@ Click a saved entry to change its name, emoji or number, then click Update
 code. Clear Number to remove its numeric code. New code clears the form;
 Remove deletes the entry. Each number must be unique. Built-in names and
 numbers 1–60 stay reserved. Changes affect future commands, not emojis already
-placed in a project. Personal codes work in the panel, native text layers
-and native text layers. Settings persist locally across restarts.
+placed in a project. Personal codes work in the panel and native text layers. Settings persist locally across restarts.
 
 ALIGNMENT UPDATE IN 4.4.5
 Restores the native glyph size and baseline used before 4.4. Measurements use
