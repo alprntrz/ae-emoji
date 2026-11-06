@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="7.0" ExtensionBundleId="co.sevenapps.paste" ExtensionBundleVersion="4.4.5" ExtensionBundleName="AE Emoji">
-  <ExtensionList><Extension Id="co.sevenapps.paste.panel" Version="4.4.5"/><Extension Id="co.sevenapps.paste.commands" Version="4.4.5"/></ExtensionList>
+<ExtensionManifest Version="7.0" ExtensionBundleId="co.sevenapps.paste" ExtensionBundleVersion="4.5.0" ExtensionBundleName="AE Emoji">
+  <ExtensionList><Extension Id="co.sevenapps.paste.panel" Version="4.5.0"/><Extension Id="co.sevenapps.paste.commands" Version="4.5.0"/></ExtensionList>
   <ExecutionEnvironment>
     <HostList><Host Name="AEFT" Version="[25.0,99.9]"/></HostList>
     <LocaleList><Locale Code="All"/></LocaleList>

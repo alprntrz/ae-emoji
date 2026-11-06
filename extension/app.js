@@ -2,13 +2,15 @@
 const requireNode = window.cep_node ? window.cep_node.require : require;
 const fs = requireNode('fs'), path = requireNode('path'), os = requireNode('os');
 const crypto = requireNode('crypto'), spawn = requireNode('child_process').spawn;
-const root = path.dirname(decodeURIComponent(location.pathname));
+const root = path.dirname(requireNode('url').fileURLToPath(location.href));
+const platform=requireNode(path.join(root,'platform.js'));
+const render=requireNode(path.join(root,'renderer.js'))(root,document,process.platform);
 const worker = path.join(root, 'native', 'sevemoji-render');
 const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'Sevemoji-preview-'));
 const core=requireNode(path.join(root,'core.js'));
 const ids = ['text','emoji'];
 let textStyle={font:'Arial-BoldMT',size:72,align:'center',color:'#ffffff'},collection='all';
-const library=requireNode(path.join(root,'library.js'))(localStorage,fs,path.join(os.homedir(),'Library','Application Support','Sevemoji','recent.json'));
+const library=requireNode(path.join(root,'library.js'))(localStorage,fs,path.join(platform.dataDir(),'recent.json'));
 let recentSignature=JSON.stringify(library.recent());
 const el = id => document.getElementById(id);
 let busy = false, target = null, revision = 0, previewTimer = null, latest = null;
@@ -26,22 +28,6 @@ function ae(action, payload) {
       try { const r=JSON.parse(raw); if(!r.ok)throw new Error(r.error);resolve(r.result); }
       catch(e){reject(new Error(e.message || 'After Effects did not respond.'));}
     });
-  });
-}
-function native(payload) {
-  return new Promise((resolve,reject) => {
-    const child=spawn(worker,[],{stdio:['pipe','pipe','pipe']});
-    let stdout='',stderr='',done=false;
-    const timer=setTimeout(()=>{child.kill();finish(new Error('Image rendering timed out.'));},20000);
-    function finish(error,value){if(done)return;done=true;clearTimeout(timer);error?reject(error):resolve(value);}
-    child.stdout.on('data',d=>{stdout+=d;});child.stderr.on('data',d=>{stderr+=d;});
-    child.on('error',e=>finish(e));
-    child.stdin.on('error',()=>{});
-    child.on('close',code=>{
-      try{const r=JSON.parse(stdout);if(!r.ok)throw new Error(r.error);finish(null,r.result);}
-      catch(e){finish(new Error(stdout?e.message:'The macOS text engine failed: '+stderr.slice(-220)));}
-    });
-    child.stdin.end(JSON.stringify(payload));
   });
 }
 function saveBytes(directory,bytes) {
@@ -62,13 +48,13 @@ function setBusy(value){busy=value;el('update').style.display=target&&target.ver
 async function renderEmoji(s){
  const key=crypto.createHash('sha256').update(s.emoji).digest('hex');
  if(latest&&latest.key===key&&fs.existsSync(latest.result.path))return latest.result;
- const result=await native({action:'emoji',emoji:s.emoji,output:path.join(temp,key+'.png')});latest={key,result};return result;
+ const result=await render(s.emoji,path.join(temp,key+'.png'));latest={key,result};return result;
 }
 async function put(mode){
  if(busy)return;setBusy(true);
  try{
   const context=await ae('context');
-  if(!context.projectPath)throw Error('Save your project first (⌘S).');
+  if(!context.projectPath)throw Error('Save your project first (Ctrl/Cmd+S).');
   if(mode!=='add'&&(!target||target.projectPath!==context.projectPath))throw Error('Click Load selected to load a layer from this project first.');
   if(mode==='add'&&!context.compId)throw Error('Open a composition first.');
   const s=settings();
@@ -78,7 +64,7 @@ async function put(mode){
    if(body.length>6000)throw Error('Use up to 6,000 characters.');
    status('Preparing '+found.length+' emoji(s)…');
    for(const hit of found){const key=shared.key(hit.emoji);if(assets[key])continue;const result=await renderEmoji({emoji:hit.emoji}),bytes=fs.readFileSync(result.path);assets[key]={emoji:hit.emoji,path:saveBytes(assetFolder(context.projectPath),bytes),png:bytes.toString('base64')};}
-   const added=await ae('add4',Object.assign({},context,{text:body,settings:s,assets}));target=added;recordRecent(body);fill(added.settings);status(found.length+' emoji(s) added on separate layers. Edit the text in AE. Save with ⌘S.');return;
+   const added=await ae('add4',Object.assign({},context,{text:body,settings:s,assets}));target=added;recordRecent(body);fill(added.settings);status(found.length+' emoji(s) added on separate layers. Edit the text in AE. Save with Ctrl/Cmd+S.');return;
   }
   if(!s.text.trim()&&!(mode==='emoji'&&target&&target.version===4))throw Error('Enter some text first.');
   if(!s.emoji)throw Error('Use /s :1 in the text or pick an emoji from the gallery.');
@@ -93,7 +79,7 @@ async function put(mode){
    legacyLayerId:conversion?target.legacyLayerId:null,legacyId:conversion?target.id:null});
   const added=await ae(target&&target.version===4&&mode==='emoji'?'emoji4':mode==='add'||conversion?'add2':mode==='emoji'?'emoji2':'update2',payload);
   target=added;recordRecent(s.emoji);fill(added.settings);el('update').textContent='Update text + emoji';
-  status(mode==='emoji'?'Emoji replaced. Your text is preserved. Save with ⌘S.':conversion?'Separate layers are ready. The old layer is preserved and hidden. Save with ⌘S.':'Text and emoji are on separate layers. Edit the text in AE. Save with ⌘S.');
+  status(mode==='emoji'?'Emoji replaced. Your text is preserved. Save with Ctrl/Cmd+S.':conversion?'Separate layers are ready. The old layer is preserved and hidden. Save with Ctrl/Cmd+S.':'Text and emoji are on separate layers. Edit the text in AE. Save with Ctrl/Cmd+S.');
  }catch(e){status(e.message,true);}finally{setBusy(false);}
 }
 function preview(){
@@ -117,7 +103,7 @@ function gallery(){
  found.forEach(e=>{
   const item=document.createElement('div');item.className='emoji-item';
   const button=document.createElement('button');button.className='emoji-card';button.type='button';button.dataset.emoji=e.emoji;button.title=e.label+' · /s :'+e.name+(e.id?' · /s :'+e.id:'');button.setAttribute('aria-label',button.title);
-  const glyph=document.createElement('span');glyph.className='glyph';glyph.textContent=e.emoji;
+  const glyph=document.createElement('span');glyph.className='glyph';const asset=e.id?path.join(root,'assets',String(e.id)+'.png'):'';if(asset&&fs.existsSync(asset)){const img=document.createElement('img');img.src=requireNode('url').pathToFileURL(asset).href;img.alt=e.emoji;img.style.width='30px';img.style.height='30px';glyph.appendChild(img);}else glyph.textContent=e.emoji;
   const name=document.createElement('span');name.className='caption';name.textContent=':'+e.name;
   const code=document.createElement('b');code.textContent=e.id?':'+e.id:'—';button.appendChild(glyph);button.appendChild(name);button.appendChild(code);
   button.addEventListener('click',()=>{el('emoji').value=e.id?':'+e.id:e.emoji;remember();recordRecent(e.emoji);preview();status(e.emoji+' selected. '+(target&&!target.legacy?'Click Replace emoji to apply it.':'Click Add text + emoji.'));});
@@ -145,8 +131,8 @@ async function repair(manual) {
       await ae(card.version===4?'relink4':card.version===2?'relink2':'relink',Object.assign({},card,{path:file,projectPath:scan.projectPath}));
       repaired++;
     }
-    if(repaired)status(repaired+' image(s) restored next to your project. Save with ⌘S.');
-    else if(manual)status(fixed?'Emoji alignment and links refreshed. Save with ⌘S.':'Project checked. Emoji files and links are ready.');
+    if(repaired)status(repaired+' image(s) restored next to your project. Save with Ctrl/Cmd+S.');
+    else if(manual)status(fixed?'Emoji alignment and links refreshed. Save with Ctrl/Cmd+S.':'Project checked. Emoji files and links are ready.');
   }catch(e){if(manual||repaired)status(e.message,true);}finally{setBusy(false);}
 }
 ids.forEach(id=>el(id).addEventListener('input',()=>{if(id==='text'){try{if(core.split(el('text').value).emoji)el('emoji').value='';}catch(e){}}remember();preview();}));
@@ -171,3 +157,7 @@ window.addEventListener('beforeunload',()=>{try{fs.readdirSync(temp).forEach(f=>
 document.querySelectorAll('[data-collection]').forEach(button=>button.addEventListener('click',()=>{collection=button.dataset.collection;document.querySelectorAll('[data-collection]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-selected',b===button?'true':'false');});gallery();}));
 function showTab(help){el('settings-view').hidden=true;el('tab-settings').classList.remove('active');el('tab-settings').setAttribute('aria-selected','false');el('emoji-view').hidden=help;el('help-view').hidden=!help;el('tab-emoji').classList.toggle('active',!help);el('tab-help').classList.toggle('active',help);el('tab-emoji').setAttribute('aria-selected',help?'false':'true');el('tab-help').setAttribute('aria-selected',help?'true':'false');}
 el('tab-emoji').addEventListener('click',()=>showTab(false));el('tab-help').addEventListener('click',()=>showTab(true));
+
+if(process.platform==='win32')window.addEventListener('DOMContentLoaded',()=>{
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while((node=walker.nextNode()))if(node.nodeValue.indexOf('⌘')>=0)node.nodeValue=node.nodeValue.replace(/⌘/g,'Ctrl+');
+});

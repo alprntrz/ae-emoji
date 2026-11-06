@@ -3,7 +3,7 @@
 // and restarts a lost idle task; it never reads Source Text from CEP.
 module.exports=function(root,cep,onStatus){
  const path=require('path');let pending=false,queued=null,closed=false;
- const version='4.4.5';
+ const version='4.5.0';
  function hostScript(action){
   const load='if(typeof SevenPasteCommands==="undefined"||SevenPasteCommands.version!=='+JSON.stringify(version)+'){'+
    '$.evalFile(new File('+JSON.stringify(path.join(root,'host','main.jsx'))+'));'+

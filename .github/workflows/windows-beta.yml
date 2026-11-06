@@ -1,0 +1,48 @@
+name: Windows beta checks
+on:
+  push:
+    branches: [windows-beta]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Run cross-platform JavaScript checks
+        shell: pwsh
+        run: |
+          node tests/parser.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node tests/automation.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node tests/windows-platform.js
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check installer and update backup
+        shell: pwsh
+        run: |
+          $sandbox = Join-Path $env:RUNNER_TEMP 'AE Emoji Test'
+          $old = Join-Path $sandbox 'Adobe\CEP\extensions\co.sevenapps.paste'
+          New-Item -ItemType Directory -Force -Path $old | Out-Null
+          Set-Content -LiteralPath (Join-Path $old 'old.txt') -Value 'existing installation'
+          ./Install.ps1 -AppDataRoot $sandbox
+          if (!(Test-Path (Join-Path $old 'CSXS\manifest.xml'))) { throw 'Installation did not copy the extension.' }
+          $backups = @(Get-ChildItem -Path (Join-Path $sandbox 'Sevemoji\Backups') -Recurse -Filter old.txt)
+          if ($backups.Count -ne 1) { throw 'Existing installation was not backed up.' }
+      - name: Check Windows emoji font availability
+        shell: pwsh
+        run: |
+          if (!(Test-Path "$env:WINDIR\Fonts\seguiemj.ttf")) { throw 'Segoe UI Emoji is not installed on this runner.' }
+          Write-Host 'Windows system emoji font is available.'
+      - name: Check real Windows browser canvas
+        shell: pwsh
+        run: |
+          $edge = "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe"
+          if (!(Test-Path $edge)) { $edge = "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe" }
+          if (!(Test-Path $edge)) { throw 'Microsoft Edge not found on runner.' }
+          $page = [System.Uri]::new((Resolve-Path 'tests/windows-canvas.html').Path).AbsoluteUri
+          $dom = & $edge --headless --disable-gpu --no-first-run --dump-dom $page 2>$null
+          if (-not ($dom -join "`n").Contains('CANVAS_OK')) { throw 'Browser canvas did not render the test emoji.' }
+          Write-Host 'Windows browser canvas rendered a system emoji.'
