@@ -24,6 +24,7 @@ Other emojis are rendered using Windows' Segoe UI Emoji font, so their style
 and availability differ from Apple emoji. Keep the panel open when using
 custom emojis. Emoji positions and support must be tested on your AE version.
 
-If PowerShell's execution policy blocks the installer, consult your system
-administrator or Microsoft's documentation. The installer does not change it.
+Install.cmd uses Windows command-line tools and does not change PowerShell
+execution policy. Install.ps1 is provided as an alternative; if policy blocks
+it, consult your system administrator or Microsoft documentation.
 The CEP extension is self-signed and is not a Microsoft-signed installer.

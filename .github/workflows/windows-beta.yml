@@ -31,6 +31,13 @@ jobs:
           if (!(Test-Path (Join-Path $old 'CSXS\manifest.xml'))) { throw 'Installation did not copy the extension.' }
           $backups = @(Get-ChildItem -Path (Join-Path $sandbox 'Sevemoji\Backups') -Recurse -Filter old.txt)
           if ($backups.Count -ne 1) { throw 'Existing installation was not backed up.' }
+          $env:APPDATA = $sandbox
+          $env:AE_EMOJI_NONINTERACTIVE = '1'
+          & cmd.exe /c Install.cmd
+          if ($LASTEXITCODE -ne 0) { throw "Windows command installer exited with $LASTEXITCODE" }
+          if (!(Test-Path (Join-Path $old 'CSXS\manifest.xml'))) { throw 'Command installer did not install extension.' }
+          $backups = @(Get-ChildItem -Path (Join-Path $sandbox 'Sevemoji\Backups') -Directory)
+          if ($backups.Count -ne 2) { throw 'Command installer did not back up the previous installation.' }
       - name: Check Windows emoji font availability
         shell: pwsh
         run: |
