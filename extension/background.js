@@ -6,7 +6,7 @@
  let previous='';
  const runtime=r(path.join(root,'automation.js'))(root,window.__adobe_cep__,function(status){
   const signature=JSON.stringify({state:status.state,enabled:status.enabled,error:status.error});if(signature===previous)return;previous=signature;
-  try{const dir=path.join(os.homedir(),'Library','Application Support','Sevemoji');fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'commands-startup.json'),JSON.stringify({version:'4.4.3',time:new Date().toISOString(),status:status}));}catch(e){}
+  try{const dir=path.join(os.homedir(),'Library','Application Support','Sevemoji');fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'commands-startup.json'),JSON.stringify({version:'4.4.4',time:new Date().toISOString(),status:status}));}catch(e){}
  });
  window.addEventListener('unload',()=>runtime.close());
 }());

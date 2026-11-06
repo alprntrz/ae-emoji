@@ -23,7 +23,7 @@ function state(){
 function schedule(){try{task=app.scheduleTask('SevenPasteCommands.tick()',interval,false);lastScheduled=new Date().getTime();}catch(e){running=false;task=null;lastError='Could not start auto-conversion: '+e.toString();}}
 function start(path){root=path;if(running)return 'already-running';running=true;lastRepair=new Date().getTime();schedule();return running?'started':'failed';}
 function ensure(path,force){var now=new Date().getTime();if(force||(running&&now-Math.max(lastTick,lastScheduled)>5000)){stop();lastError='';}start(path);return status();}
-function status(){return JSON.stringify({version:'4.4.3',running:running,enabled:enabled(),error:lastError,interval:interval,waitingForText:editingText(),converted:converted,lastConvertMs:lastConvertMs,fileAccess:fileAccess(),state:state(),aeVersion:app.version,lastTick:lastTick});}
+function status(){return JSON.stringify({version:'4.4.4',running:running,enabled:enabled(),error:lastError,interval:interval,waitingForText:editingText(),converted:converted,lastConvertMs:lastConvertMs,fileAccess:fileAccess(),state:state(),aeVersion:app.version,lastTick:lastTick});}
 function enabled(){return !app.settings.haveSetting('SevenPaste','CommandsEnabled')||app.settings.getSetting('SevenPaste','CommandsEnabled')!=='false';}
 function read(f){f.encoding='UTF-8';if(!f.open('r'))throw Error('The file could not be read.');var s=f.read();f.close();return JSON.parse(s);}
 function write(f,d){f.encoding='UTF-8';if(f.open('w')){f.write(JSON.stringify(d));f.close();}}
@@ -82,7 +82,7 @@ function tick(){task=null;lastTick=new Date().getTime();waitingForText=false;try
  if(new Date().getTime()-lastRepair>10000){lastRepair=new Date().getTime();var cards=Sevemoji.scan();for(var n=0;n<cards.length;n++)if(cards[n].missing){var e=app.project.itemByID(cards[n].compId),l=byId(e,cards[n].emojiLayerId);if(l){var d=Sevemoji.read(l),a=asset(d.emoji);if(a)l.source.replace(new File(a.path));}}}
  }catch(e){lastError=e.toString();}finally{if(running)schedule();}}
 function stop(){running=false;if(task!==null)try{app.cancelTask(task);}catch(ignore){}task=null;}
-return {version:'4.4.3',start:start,ensure:ensure,stop:stop,tick:tick,process:process,asset:asset,invalidate:invalidate,
+return {version:'4.4.4',start:start,ensure:ensure,stop:stop,tick:tick,process:process,asset:asset,invalidate:invalidate,
  setEnabled:function(v){app.settings.saveSetting('SevenPaste','CommandsEnabled',v?'true':'false');return v;},status:status};
 }());
 

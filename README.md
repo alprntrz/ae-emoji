@@ -1,10 +1,10 @@
-# sevemoji
+# AE Emoji
 
 Color Apple-style emojis for editable After Effects text.
 
-**[Download Sevemoji 4.4.3 for macOS](https://github.com/alprntrz/sevemoji/releases/latest)**
+**[Download AE Emoji 4.4.4 for macOS](https://github.com/alprntrz/ae-emoji/releases/latest)**
 
-Sevemoji converts pasted emojis and typed commands into separate PNG layers. Your text stays editable, and each emoji follows its place in the text.
+AE Emoji converts pasted emojis and typed commands into separate PNG layers. Your text stays editable, and each emoji follows its place in the text.
 
 ## What it does
 
@@ -28,12 +28,12 @@ Windows is not supported. TikTokText is optional and must be installed separatel
 
 ## Install
 
-1. Download **Sevemoji-4.4.3-Mac.zip** from [Releases](https://github.com/alprntrz/sevemoji/releases/latest).
+1. Download **AE-Emoji-4.4.4-Mac.zip** from [Releases](https://github.com/alprntrz/ae-emoji/releases/latest).
 2. Save your work and completely quit After Effects.
-3. Extract the ZIP. Keep all files in its `Sevemoji` folder together.
-4. Double-click **Install.command**. An existing Sevemoji installation is backed up first.
-5. Open AE. In **Settings → Scripting & Expressions**, enable **Allow Scripts to Write Files and Access Network**. Sevemoji uses this permission to save local emoji images.
-6. Open **Window → Extensions → Sevemoji** and leave **Auto-convert in After Effects** enabled.
+3. Extract the ZIP. Keep all files in its `AE-Emoji` folder together.
+4. Double-click **Install.command**. An existing AE Emoji installation is backed up first.
+5. Open AE. In **Settings → Scripting & Expressions**, enable **Allow Scripts to Write Files and Access Network**. AE Emoji uses this permission to save local emoji images.
+6. Open **Window → Extensions → AE Emoji** and leave **Auto-convert in After Effects** enabled.
 
 The release ZIP contains the installer, signed Adobe extension, and full README. For normal installation, use the release asset above.
 
@@ -46,9 +46,9 @@ This release is **not Apple-notarized**. macOS may ask for approval or block the
 1. Save the AEP in a writable folder.
 2. Create an unlocked 2D text layer and type `Hello /s :smile`, or paste `Hello 😄`.
 3. Finish typing with **Command+Enter**, then press **V**.
-4. Sevemoji creates a separate emoji layer. Edit the text normally.
+4. AE Emoji creates a separate emoji layer. Edit the text normally.
 
-Open Sevemoji once after each AE launch. Keep the panel open for custom emojis, status messages, and automatic watcher recovery. Conversion pauses while a text layer is selected with the Type tool.
+Open AE Emoji once after each AE launch. Keep the panel open for custom emojis, status messages, and automatic watcher recovery. Conversion pauses while a text layer is selected with the Type tool.
 
 | Type in a text layer | Result |
 | --- | --- |

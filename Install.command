@@ -10,7 +10,7 @@ _sevemoji_install() {
   sevemoji_stage=$(/usr/bin/mktemp -d "$sevemoji_parent/.sevemoji-install.XXXXXX")
   if ! /usr/bin/ditto "$sevemoji_source" "$sevemoji_stage"; then
     /bin/rm -rf "$sevemoji_stage"
-    print -u2 'Could not prepare Sevemoji. The existing installation was not changed.'
+    print -u2 'Could not prepare AE Emoji. The existing installation was not changed.'
     return 1
   fi
   /bin/chmod 755 "$sevemoji_stage/native/sevemoji-render"
@@ -29,8 +29,8 @@ _sevemoji_install() {
     print -u2 'Installation failed. The previous installation was restored.'
     return 1
   fi
-  print 'Sevemoji 4.4.3 installed successfully.'
-  print 'Open After Effects > Window > Extensions > Sevemoji.'
+  print 'AE Emoji 4.4.4 installed successfully.'
+  print 'Open After Effects > Window > Extensions > AE Emoji.'
   print 'In AE Settings > Scripting & Expressions, enable:'
   print '  Allow Scripts to Write Files and Access Network'
   print 'Save the AEP. Type Hello /s :1, finish with Command+Enter, then press V.'
@@ -45,7 +45,7 @@ _sevemoji_main() {
   fi
   local sevemoji_os=$(/usr/bin/sw_vers -productVersion)
   if (( ${sevemoji_os%%.*} < 13 )); then
-    print -u2 'Sevemoji requires macOS 13 or later and a compatible After Effects version.';return 1
+    print -u2 'AE Emoji requires macOS 13 or later and a compatible After Effects version.';return 1
   fi
   if /usr/bin/pgrep -x 'After Effects' >/dev/null; then
     print -u2 'Save your work and quit After Effects, then run Install.command again.';return 1

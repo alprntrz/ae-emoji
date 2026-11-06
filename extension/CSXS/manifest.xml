@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ExtensionManifest Version="7.0" ExtensionBundleId="co.sevenapps.paste" ExtensionBundleVersion="4.4.3" ExtensionBundleName="Sevemoji">
-  <ExtensionList><Extension Id="co.sevenapps.paste.panel" Version="4.4.3"/><Extension Id="co.sevenapps.paste.commands" Version="4.4.3"/></ExtensionList>
+<ExtensionManifest Version="7.0" ExtensionBundleId="co.sevenapps.paste" ExtensionBundleVersion="4.4.4" ExtensionBundleName="AE Emoji">
+  <ExtensionList><Extension Id="co.sevenapps.paste.panel" Version="4.4.4"/><Extension Id="co.sevenapps.paste.commands" Version="4.4.4"/></ExtensionList>
   <ExecutionEnvironment>
     <HostList><Host Name="AEFT" Version="[25.0,99.9]"/></HostList>
     <LocaleList><Locale Code="All"/></LocaleList>
@@ -11,7 +11,7 @@
       <CEFCommandLine><Parameter>--enable-nodejs</Parameter><Parameter>--mixed-context</Parameter></CEFCommandLine>
     </Resources>
     <Lifecycle><AutoVisible>true</AutoVisible></Lifecycle>
-    <UI><Type>Panel</Type><Menu>Sevemoji</Menu><Geometry><Size><Width>390</Width><Height>640</Height></Size><MinSize><Width>300</Width><Height>460</Height></MinSize></Geometry></UI>
+    <UI><Type>Panel</Type><Menu>AE Emoji</Menu><Geometry><Size><Width>390</Width><Height>640</Height></Size><MinSize><Width>300</Width><Height>460</Height></MinSize></Geometry></UI>
   </DispatchInfo></Extension><Extension Id="co.sevenapps.paste.commands"><DispatchInfo>
     <Resources><MainPath>./background.html</MainPath><CEFCommandLine><Parameter>--enable-nodejs</Parameter><Parameter>--mixed-context</Parameter></CEFCommandLine></Resources>
     <Lifecycle><AutoVisible>false</AutoVisible><StartOn><Event>com.adobe.csxs.events.ApplicationActivate</Event><Event>com.adobe.csxs.events.ApplicationInitialized</Event></StartOn></Lifecycle>

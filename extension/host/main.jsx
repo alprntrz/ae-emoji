@@ -79,7 +79,7 @@ var SevenPaste = (function () {
             else if(active.selectedLayers.length===1&&active.selectedLayers[0].source instanceof CompItem
                 &&active.selectedLayers[0].source.comment.indexOf(TAG)===0)c=active.selectedLayers[0].source;
         }
-        if(!c)throw Error('Select a Sevemoji layer in the timeline.');
+        if(!c)throw Error('Select an AE Emoji layer in the timeline.');
         return c;
     }
     function add(p, update) {
@@ -162,7 +162,7 @@ var SevenPaste = (function () {
     }
     function load2(){var c=app.project.activeItem;if(c instanceof CompItem&&c.selectedLayers.length===1){var l=c.selectedLayers[0];if(l.comment.indexOf(EMOJI2)===0)return info2(l);if(l instanceof TextLayer){for(var j=1;j<=c.numLayers;j++){var e=c.layer(j);if(e.parent===l&&e.comment.indexOf(EMOJI2)===0)return info2(e);}}
         if(l.source instanceof CompItem&&l.source.comment.indexOf(TAG)===0){var d=cardData(l.source,false);d.legacy=true;d.compId=c.id;d.legacyLayerId=l.id;d.projectPath=context().projectPath;return d;}}
-        throw Error('Select a Sevemoji text or emoji layer.');
+        throw Error('Select an AE Emoji text or emoji layer.');
     }
     function textStyle2(t,s){var prop=t.property('ADBE Text Properties').property('ADBE Text Document');if(prop.numKeys||prop.expressionEnabled)throw Error('Edit animated text in After Effects; you can replace the emoji separately.');var d=prop.value;d.resetCharStyle();d.resetParagraphStyle();d.text=s.text.replace(/\r\n/g,'\r').replace(/\n/g,'\r');d.font=s.font;d.fontSize=s.size;d.applyFill=true;d.applyStroke=false;d.fillColor=[parseInt(s.color.substr(1,2),16)/255,parseInt(s.color.substr(3,2),16)/255,parseInt(s.color.substr(5,2),16)/255];d.autoLeading=true;d.tracking=0;
         d.justification=s.align==='left'?ParagraphJustification.LEFT_JUSTIFY:s.align==='right'?ParagraphJustification.RIGHT_JUSTIFY:ParagraphJustification.CENTER_JUSTIFY;prop.setValue(d);

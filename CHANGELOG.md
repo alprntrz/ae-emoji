@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.4.4
+
+- Rename Sevemoji to AE Emoji while retaining compatibility with existing projects and settings.
+
 ## 4.4.3
 
 - Show the reason auto-conversion is waiting, including file access, saving, and text editing mode.
