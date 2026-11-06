@@ -1,0 +1,31 @@
+# Local files and credentials
+.DS_Store
+._*
+.env
+.env.*
+*.p12
+*.pfx
+*.pem
+*.key
+*signing-password*
+*credentials*
+*.aep
+*.aepx
+*.prproj
+*.log
+*.zip
+*.zxp
+node_modules/
+.codex/
+.aws/
+.vscode/
+.idea/
+work/
+outputs/
+cache/
+Backups/
+Sevemoji Assets/
+settings.json
+settings.json.*
+recent.json
+commands-startup.json

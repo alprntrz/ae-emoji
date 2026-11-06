@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionManifest Version="7.0" ExtensionBundleId="co.sevenapps.paste" ExtensionBundleVersion="4.4.3" ExtensionBundleName="Sevemoji">
+  <ExtensionList><Extension Id="co.sevenapps.paste.panel" Version="4.4.3"/><Extension Id="co.sevenapps.paste.commands" Version="4.4.3"/></ExtensionList>
+  <ExecutionEnvironment>
+    <HostList><Host Name="AEFT" Version="[25.0,99.9]"/></HostList>
+    <LocaleList><Locale Code="All"/></LocaleList>
+    <RequiredRuntimeList><RequiredRuntime Name="CSXS" Version="11.0"/></RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList><Extension Id="co.sevenapps.paste.panel"><DispatchInfo>
+    <Resources><MainPath>./index.html</MainPath><ScriptPath>./host/main.jsx</ScriptPath>
+      <CEFCommandLine><Parameter>--enable-nodejs</Parameter><Parameter>--mixed-context</Parameter></CEFCommandLine>
+    </Resources>
+    <Lifecycle><AutoVisible>true</AutoVisible></Lifecycle>
+    <UI><Type>Panel</Type><Menu>Sevemoji</Menu><Geometry><Size><Width>390</Width><Height>640</Height></Size><MinSize><Width>300</Width><Height>460</Height></MinSize></Geometry></UI>
+  </DispatchInfo></Extension><Extension Id="co.sevenapps.paste.commands"><DispatchInfo>
+    <Resources><MainPath>./background.html</MainPath><CEFCommandLine><Parameter>--enable-nodejs</Parameter><Parameter>--mixed-context</Parameter></CEFCommandLine></Resources>
+    <Lifecycle><AutoVisible>false</AutoVisible><StartOn><Event>com.adobe.csxs.events.ApplicationActivate</Event><Event>com.adobe.csxs.events.ApplicationInitialized</Event></StartOn></Lifecycle>
+    <UI><Type>Custom</Type><Geometry><Size><Width>1</Width><Height>1</Height></Size></Geometry></UI>
+  </DispatchInfo></Extension></DispatchInfoList>
+</ExtensionManifest>

@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "emoji": "😄",
+    "name": "smile",
+    "label": "Smile"
+  },
+  {
+    "id": 2,
+    "emoji": "😂",
+    "name": "joy",
+    "label": "Joy"
+  },
+  {
+    "id": 3,
+    "emoji": "❤️",
+    "name": "heart",
+    "label": "Heart"
+  },
+  {
+    "id": 4,
+    "emoji": "🤣",
+    "name": "rofl",
+    "label": "Rofl"
+  },
+  {
+    "id": 5,
+    "emoji": "😭",
+    "name": "sob",
+    "label": "Sob"
+  },
+  {
+    "id": 6,
+    "emoji": "😍",
+    "name": "heart-eyes",
+    "label": "Heart Eyes"
+  },
+  {
+    "id": 7,
+    "emoji": "😊",
+    "name": "blush",
+    "label": "Blush"
+  },
+  {
+    "id": 8,
+    "emoji": "🙏",
+    "name": "pray",
+    "label": "Pray"
+  },
+  {
+    "id": 9,
+    "emoji": "😘",
+    "name": "kiss",
+    "label": "Kiss"
+  },
+  {
+    "id": 10,
+    "emoji": "👍",
+    "name": "thumbs-up",
+    "label": "Thumbs Up"
+  },
+  {
+    "id": 11,
+    "emoji": "😅",
+    "name": "sweat-smile",
+    "label": "Sweat Smile"
+  },
+  {
+    "id": 12,
+    "emoji": "👏",
+    "name": "clap",
+    "label": "Clap"
+  },
+  {
+    "id": 13,
+    "emoji": "😁",
+    "name": "grin",
+    "label": "Grin"
+  },
+  {
+    "id": 14,
+    "emoji": "🔥",
+    "name": "fire",
+    "label": "Fire"
+  },
+  {
+    "id": 15,
+    "emoji": "💕",
+    "name": "two-hearts",
+    "label": "Two Hearts"
+  },
+  {
+    "id": 16,
+    "emoji": "💔",
+    "name": "broken-heart",
+    "label": "Broken Heart"
+  },
+  {
+    "id": 17,
+    "emoji": "💖",
+    "name": "sparkling-heart",
+    "label": "Sparkling Heart"
+  },
+  {
+    "id": 18,
+    "emoji": "💙",
+    "name": "blue-heart",
+    "label": "Blue Heart"
+  },
+  {
+    "id": 19,
+    "emoji": "😢",
+    "name": "cry",
+    "label": "Cry"
+  },
+  {
+    "id": 20,
+    "emoji": "🤔",
+    "name": "thinking",
+    "label": "Thinking"
+  },
+  {
+    "id": 21,
+    "emoji": "😆",
+    "name": "laugh",
+    "label": "Laugh"
+  },
+  {
+    "id": 22,
+    "emoji": "🙄",
+    "name": "eye-roll",
+    "label": "Eye Roll"
+  },
+  {
+    "id": 23,
+    "emoji": "💪",
+    "name": "muscle",
+    "label": "Muscle"
+  },
+  {
+    "id": 24,
+    "emoji": "😉",
+    "name": "wink",
+    "label": "Wink"
+  },
+  {
+    "id": 25,
+    "emoji": "👌",
+    "name": "ok-hand",
+    "label": "Ok Hand"
+  },
+  {
+    "id": 26,
+    "emoji": "🤗",
+    "name": "hug",
+    "label": "Hug"
+  },
+  {
+    "id": 27,
+    "emoji": "💜",
+    "name": "purple-heart",
+    "label": "Purple Heart"
+  },
+  {
+    "id": 28,
+    "emoji": "😔",
+    "name": "pensive",
+    "label": "Pensive"
+  },
+  {
+    "id": 29,
+    "emoji": "😎",
+    "name": "cool",
+    "label": "Cool"
+  },
+  {
+    "id": 30,
+    "emoji": "😇",
+    "name": "angel",
+    "label": "Angel"
+  },
+  {
+    "id": 31,
+    "emoji": "🌹",
+    "name": "rose",
+    "label": "Rose"
+  },
+  {
+    "id": 32,
+    "emoji": "🤦",
+    "name": "facepalm",
+    "label": "Facepalm"
+  },
+  {
+    "id": 33,
+    "emoji": "🎉",
+    "name": "party",
+    "label": "Party"
+  },
+  {
+    "id": 34,
+    "emoji": "✨",
+    "name": "sparkles",
+    "label": "Sparkles"
+  },
+  {
+    "id": 35,
+    "emoji": "🤷",
+    "name": "shrug",
+    "label": "Shrug"
+  },
+  {
+    "id": 36,
+    "emoji": "😱",
+    "name": "scream",
+    "label": "Scream"
+  },
+  {
+    "id": 37,
+    "emoji": "😌",
+    "name": "relieved",
+    "label": "Relieved"
+  },
+  {
+    "id": 38,
+    "emoji": "🌸",
+    "name": "blossom",
+    "label": "Blossom"
+  },
+  {
+    "id": 39,
+    "emoji": "🙌",
+    "name": "raised-hands",
+    "label": "Raised Hands"
+  },
+  {
+    "id": 40,
+    "emoji": "😋",
+    "name": "yum",
+    "label": "Yum"
+  },
+  {
+    "id": 41,
+    "emoji": "💚",
+    "name": "green-heart",
+    "label": "Green Heart"
+  },
+  {
+    "id": 42,
+    "emoji": "😏",
+    "name": "smirk",
+    "label": "Smirk"
+  },
+  {
+    "id": 43,
+    "emoji": "💛",
+    "name": "yellow-heart",
+    "label": "Yellow Heart"
+  },
+  {
+    "id": 44,
+    "emoji": "🙂",
+    "name": "slight-smile",
+    "label": "Slight Smile"
+  },
+  {
+    "id": 45,
+    "emoji": "🤩",
+    "name": "star-eyes",
+    "label": "Star Eyes"
+  },
+  {
+    "id": 46,
+    "emoji": "😀",
+    "name": "grinning",
+    "label": "Grinning"
+  },
+  {
+    "id": 47,
+    "emoji": "🖤",
+    "name": "black-heart",
+    "label": "Black Heart"
+  },
+  {
+    "id": 48,
+    "emoji": "💯",
+    "name": "hundred",
+    "label": "Hundred"
+  },
+  {
+    "id": 49,
+    "emoji": "🙈",
+    "name": "see-no-evil",
+    "label": "See No Evil"
+  },
+  {
+    "id": 50,
+    "emoji": "🤭",
+    "name": "giggle",
+    "label": "Giggle"
+  },
+  {
+    "id": 51,
+    "emoji": "👀",
+    "name": "eyes",
+    "label": "Eyes"
+  },
+  {
+    "id": 52,
+    "emoji": "✅",
+    "name": "check",
+    "label": "Check"
+  },
+  {
+    "id": 53,
+    "emoji": "🥰",
+    "name": "hearts-face",
+    "label": "Hearts Face"
+  },
+  {
+    "id": 54,
+    "emoji": "🥺",
+    "name": "pleading",
+    "label": "Pleading"
+  },
+  {
+    "id": 55,
+    "emoji": "🤪",
+    "name": "zany",
+    "label": "Zany"
+  },
+  {
+    "id": 56,
+    "emoji": "😴",
+    "name": "sleep",
+    "label": "Sleep"
+  },
+  {
+    "id": 57,
+    "emoji": "😡",
+    "name": "angry",
+    "label": "Angry"
+  },
+  {
+    "id": 58,
+    "emoji": "💋",
+    "name": "kiss-mark",
+    "label": "Kiss Mark"
+  },
+  {
+    "id": 59,
+    "emoji": "💥",
+    "name": "boom",
+    "label": "Boom"
+  },
+  {
+    "id": 60,
+    "emoji": "⭐",
+    "name": "star",
+    "label": "Star"
+  }
+]
