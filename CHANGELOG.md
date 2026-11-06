@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.5.0 — Windows beta
+
+- Add an experimental per-user Windows installer.
+- Use platform-specific data paths and an emoji renderer for Windows.
+- Built-in emoji use packaged images; additional emoji use the Windows system font.
+- After Effects on Windows has not yet been verified.
+
 ## 4.4.5
 
 - Focus the documentation and panel guide on AE Emoji’s built-in workflow.

@@ -14,16 +14,16 @@ function state(){
  if(!app.project||!app.project.file)return {code:'save-project',message:'Save your After Effects project first (Command+S).'};
  if(app.project.renderQueue.rendering)return {code:'rendering',message:'Auto-conversion resumes after rendering.'};
  var c=app.project.activeItem;if(!(c instanceof CompItem))return {code:'open-comp',message:'Open a composition to use /s :1 in a text layer.'};
- if(editingText())return {code:'finish-text',message:'Finish typing with Command+Enter, then press V. Conversion pauses while the Type tool is active.'};
+ if(editingText())return {code:'finish-text',message:'Finish typing with '+(String($.os||'').toLowerCase().indexOf('windows')>=0?'Control+Enter':'Command+Enter')+', then press V. Conversion pauses while the Type tool is active.'};
  if(app.project.expressionEngine!=='javascript-1.0')return {code:'expressions',message:'Choose JavaScript in File > Project Settings > Expressions.'};
  var a=c.selectedLayers;for(var i=0;i<a.length;i++)if(a[i] instanceof TextLayer){var p=a[i].property('Source Text');if(a[i].locked||a[i].threeDLayer||p.numKeys||p.expressionEnabled)return {code:'layer',message:'Use an unlocked 2D text layer without Source Text keyframes or an expression.'};}
  if(lastError)return {code:'error',message:lastError};
- return {code:'ready',message:'Ready. Type Hello /s :1, finish with Command+Enter, then press V. Plain :1 stays text.'};
+ return {code:'ready',message:'Ready. Type Hello /s :1, finish with '+(String($.os||'').toLowerCase().indexOf('windows')>=0?'Control+Enter':'Command+Enter')+', then press V. Plain :1 stays text.'};
 }
 function schedule(){try{task=app.scheduleTask('SevenPasteCommands.tick()',interval,false);lastScheduled=new Date().getTime();}catch(e){running=false;task=null;lastError='Could not start auto-conversion: '+e.toString();}}
 function start(path){root=path;if(running)return 'already-running';running=true;lastRepair=new Date().getTime();schedule();return running?'started':'failed';}
 function ensure(path,force){var now=new Date().getTime();if(force||(running&&now-Math.max(lastTick,lastScheduled)>5000)){stop();lastError='';}start(path);return status();}
-function status(){return JSON.stringify({version:'4.4.5',running:running,enabled:enabled(),error:lastError,interval:interval,waitingForText:editingText(),converted:converted,lastConvertMs:lastConvertMs,fileAccess:fileAccess(),state:state(),aeVersion:app.version,lastTick:lastTick});}
+function status(){return JSON.stringify({version:'4.5.0',running:running,enabled:enabled(),error:lastError,interval:interval,waitingForText:editingText(),converted:converted,lastConvertMs:lastConvertMs,fileAccess:fileAccess(),state:state(),aeVersion:app.version,lastTick:lastTick});}
 function enabled(){return !app.settings.haveSetting('SevenPaste','CommandsEnabled')||app.settings.getSetting('SevenPaste','CommandsEnabled')!=='false';}
 function read(f){f.encoding='UTF-8';if(!f.open('r'))throw Error('The file could not be read.');var s=f.read();f.close();return JSON.parse(s);}
 function write(f,d){f.encoding='UTF-8';if(f.open('w')){f.write(JSON.stringify(d));f.close();}}
@@ -82,7 +82,7 @@ function tick(){task=null;lastTick=new Date().getTime();waitingForText=false;try
  if(new Date().getTime()-lastRepair>10000){lastRepair=new Date().getTime();var cards=Sevemoji.scan();for(var n=0;n<cards.length;n++)if(cards[n].missing){var e=app.project.itemByID(cards[n].compId),l=byId(e,cards[n].emojiLayerId);if(l){var d=Sevemoji.read(l),a=asset(d.emoji);if(a)l.source.replace(new File(a.path));}}}
  }catch(e){lastError=e.toString();}finally{if(running)schedule();}}
 function stop(){running=false;if(task!==null)try{app.cancelTask(task);}catch(ignore){}task=null;}
-return {version:'4.4.5',start:start,ensure:ensure,stop:stop,tick:tick,process:process,asset:asset,invalidate:invalidate,
+return {version:'4.5.0',start:start,ensure:ensure,stop:stop,tick:tick,process:process,asset:asset,invalidate:invalidate,
  setEnabled:function(v){app.settings.saveSetting('SevenPaste','CommandsEnabled',v?'true':'false');return v;},status:status};
 }());
 

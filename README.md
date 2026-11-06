@@ -1,5 +1,7 @@
 # AE Emoji
 
+> **Windows beta:** This branch contains an experimental Windows installer and platform support. It has not been tested inside After Effects on Windows. See [README-Windows.txt](README-Windows.txt). The production release remains macOS-only.
+
 **Color emojis for editable text in Adobe After Effects.**
 
 AE Emoji is a macOS extension that adds Apple-style color emojis to your After Effects compositions. Paste a sentence containing emojis, type a short emoji code, or choose an emoji from the panel. AE Emoji turns each detected emoji into a separate image layer and keeps it linked to its position in your editable text.
