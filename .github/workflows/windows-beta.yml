@@ -50,5 +50,5 @@ jobs:
           $proc = Start-Process -FilePath $edge -ArgumentList $args -Wait -PassThru -RedirectStandardOutput $outFile -RedirectStandardError $errFile
           $dom = Get-Content -Raw -LiteralPath $outFile
           Write-Host "Browser exit code: $($proc.ExitCode); output: $dom"
-          if (-not $dom.Contains('<body>CANVAS_OK</body>')) { throw 'Browser canvas did not render the test emoji.' }
+          if ($dom -notmatch '<body>\s*CANVAS_OK\s*</body>') { throw 'Browser canvas did not render the test emoji.' }
           Write-Host 'Windows browser canvas rendered a system emoji.'
