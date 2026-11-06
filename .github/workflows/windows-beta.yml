@@ -43,6 +43,8 @@ jobs:
           if (!(Test-Path $edge)) { $edge = "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe" }
           if (!(Test-Path $edge)) { throw 'Microsoft Edge not found on runner.' }
           $page = [System.Uri]::new((Resolve-Path 'tests/windows-canvas.html').Path).AbsoluteUri
-          $dom = & $edge --headless --disable-gpu --no-first-run --dump-dom $page 2>$null
+          $profile = Join-Path $env:RUNNER_TEMP "ae-emoji-edge-profile"
+          $dom = & $edge --headless=new --disable-gpu --no-sandbox --allow-file-access-from-files --disable-extensions --no-first-run "--user-data-dir=$profile" --dump-dom $page 2>$null
+          Write-Host "Browser exit code: $LASTEXITCODE; output: $($dom -join ' ')"
           if (-not ($dom -join "`n").Contains('CANVAS_OK')) { throw 'Browser canvas did not render the test emoji.' }
           Write-Host 'Windows browser canvas rendered a system emoji.'
